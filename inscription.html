@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription/Connection</title>
+    <style>
+        .container{
+            display: flex;
+        }
+        .inscription, .connection{
+            width: 50%;
+        }
+        .message{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <h1>Inscription/Connection</h1>
+  <div class="message"></div>
+  <div class="container">
+    <div class="inscription">
+        <form name="inscription" method="post" action="">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="form-group">                
+                <label for="password">Mot de passe :</label>
+                <input type="password" name="password" id="password">
+                <button type="button" name="genererPassword" id="genererPassword">Générer</button>
+                <button type="button" name="voirPassword">Voir</button>
+            </div>
+            <div class="form-group">
+                <label for="password">Répéter mot de passe</label>
+                <input type="password" name="password2" id="password2">
+            </div>
+            <div class="form-group">
+                <label for="couleur">Votre couleur favorite</label>
+                <input type="color" name="couleur" id="couleur">
+                <div class="apercu_couleur"></div>
+            </div>
+            <button type="submit" name="submit" disabled="disabled">S'inscrire</button>
+        </form>
+    </div>
+    <div class="connection">
+        <form name="login" method="POST" action="login.php">
+            <div class="form-group">
+                <label for="email_login">Email :</label>
+                <input type="email" name="email" id="email_login">
+            </div>
+            <div class="form-group">
+                <label for="password_login">Mot de passe</label>
+                <input type="password" name="password" id="password_login">
+            </div>
+            <div class="captcha">
+                <div id="draggable" class="ui-widget-content">
+                    <p>Glissez moi</p>
+                </div>
+                <div id="droppable" class="ui-widget-header">
+                    <p>Zone de validation</p>
+                </div>
+            </div>
+            <button type="submit" name="submit" disabled="disabled">Se connecter</button>
+        </form>
+    </div>
+    </div>
+    <script src="jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+</body>
+</html>
