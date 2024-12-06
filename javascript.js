@@ -37,10 +37,11 @@ function toggleVisibiliteMotDePasse()
 function validerInscription()
 {
 	const email = document.getElementById("email").value;
+	const couleur = document.getElementById("couleur").value;
 	const password = document.getElementById("password").value;
 	const password2 = document.getElementById("password2").value;
 	const btnSubmit = document.querySelector(".inscription button[name='submit']");
-	btnSubmit.disabled = !(email && password && password2); // Désactivé si un des champ est vide
+	btnSubmit.disabled = !(email && couleur && password && password2); // Désactivé si un des champ est vide
 }
 
 // Valider les champs de connexion et activer le bouton
@@ -76,8 +77,8 @@ function envoiFormulaireInscription()
 	$.ajax({
 		type: "POST",
 		url: "ajax.php", // Destination du formulaire
-		data: { email, password, password2 },
-		success: function (response) {
+		data: { email, password, password2 }, // Données que je lui envoie
+		success: function (response) { // Si la requête passe sans problème
 			const messageDiv = document.querySelector(".message");
 			messageDiv.style.display = "block";
 
@@ -93,7 +94,7 @@ function envoiFormulaireInscription()
 				messageDiv.textContent = "Error";
 			}
 		},
-		error: function(nhr, status, error) {
+		error: function(nhr, status, error) { // Si il a eu une couille dans le paté
 			console.error("Erreur AJAX:", status, error);
 		},
 	});
@@ -106,6 +107,13 @@ function remplirFormulaireConnexion()
 	document.getElementById("password_login").value = document.getElementById("password").value;
 
 	validerFormulaireConnexion(); // Met à jour l'état du bouton
+}
+
+// Fonction constructeur pour l'objet Utilisateur
+function User(email, password)
+{
+	this.email = email;
+	this.password = password;
 }
 
 // Ajouter les événements après que le DOM soit entièrement chargé
@@ -142,10 +150,3 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.log("Objet Utilisateur crée:", user);
 	});
 });
-
-// Fonction constructeur pour l'objet Utilisateur
-function User(email, password)
-{
-	this.email = email;
-	this.password = password;
-}
