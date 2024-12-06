@@ -23,7 +23,7 @@ function genererMotDePasse()
 
 	// Assigne le mot de passe généré aux deux champs (Mot de passe et confimation)
 	document.getElementById("password").value = password;
-	document.getElementById("password2").value = password;
+	document.getElementById("password2").value = password; // Double ration de sécurité, parce que pourquoi pas ?
 }
 
 // Afficher ou cacher le mot de passe
@@ -50,7 +50,7 @@ function validerFormulaireConnexion() {
 	const passwordLogin = document.getElementById("password_login").value;
 	const btnConnexion = document.querySelector(".connection button[name='submit']");
 
-	// Active le bouton si les deux champs sont remplis
+	// Active le bouton si les deux champs sont remplis (Pas de lazy ici, il faut tout remplir)
 	btnConnexion.disabled = !(emailLogin && passwordLogin);
 }
 
@@ -59,7 +59,7 @@ function afficherCouleurSelectionne()
 {
 	const couleur = document.getElementById("couleur").value;
 	const couleurPreview = document.querySelector(".apercu_couleur");
-	couleurPreview.style.backgroundColor = couleur;
+	couleurPreview.style.backgroundColor = couleur; // Petite touche d’art abstrait pour égayer la journée
 	couleurPreview.style.width = "100px";
 	couleurPreview.style.height = "100px";
 }
@@ -71,7 +71,7 @@ function envoiFormulaireInscription()
 	const password = document.getElementById("password").value;
 	const password2 = document.getElementById("password2").value;
 
-	console.log({ email, password, password2 });
+	console.log({ email, password, password2 }); // Petit débriefing dans la console, histoire de ne rien louper
 
 	// Petite requête AJAX des familles...
 	$.ajax({
@@ -87,15 +87,15 @@ function envoiFormulaireInscription()
 				messageDiv.style.color = "green";
 				messageDiv.textContent = "Inscription ok";
 			} else if (response.includes("Erreur mot de passe")) {
-				messageDiv.style.color = "red";
+				messageDiv.style.color = "red"; // Boum, explosion rouge, catastrophe !
 				messageDiv.textContent = "Erreur mot de passe";
 			} else {
-				messageDiv.style.color = "red";
+				messageDiv.style.color = "red"; // Le rouge, encore et toujours...
 				messageDiv.textContent = "Error";
 			}
 		},
 		error: function(nhr, status, error) { // Si il a eu une couille dans le paté
-			console.error("Erreur AJAX:", status, error);
+			console.error("Erreur AJAX:", status, error); // On affiche l’erreur en grand pour bien culpabiliser
 		},
 	});
 }
